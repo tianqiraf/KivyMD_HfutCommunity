@@ -1,0 +1,26 @@
+PyRun_SimpleString(
+        "import sys, posix\n" \
+        "private = posix.environ['ANDROID_PRIVATE']\n" \
+        "argument = posix.environ['ANDROID_ARGUMENT']\n" \
+        "sys.path[:] = [ \n" \
+     "    private + '/lib/python27.zip', \n" \
+     "    private + '/lib/python2.7/', \n" \
+     "    private + '/lib/python2.7/lib-dynload/', \n" \
+     "    private + '/lib/python2.7/site-packages/', \n" \
+     "    argument ]\n" \
+        "import androidembed\n" \
+        "class LogFile(object):\n" \
+        "    def __init__(self):\n" \
+        "        self.buffer = ''\n" \
+        "    def write(self, s):\n" \
+        "        s = self.buffer + s\n" \
+        "        lines = s.split(\"\\n\")\n" \
+        "        for l in lines[:-1]:\n" \
+        "            androidembed.log(l)\n" \
+        "        self.buffer = lines[-1]\n" \
+        "    def flush(self):\n" \
+        "        return\n" \
+        "sys.stdout = sys.stderr = LogFile()\n" \
+     "import site; print site.getsitepackages()\n"\
+     "print 'Android path', sys.path\n" \
+        "print 'Android kivy bootstrap done. __name__ is', __name__");

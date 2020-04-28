@@ -1,0 +1,17 @@
+--dist_name py2dist
+--android_api 27
+--minsdk 19
+--sdk_dir /home/kivydev/andr/android-sdk-linux
+--ndk_dir /home/kivydev/andr/android-ndk-r16b
+--ndk_version 16
+
+--arch armeabi-v7a
+--requirements python2,kivy
+--private . 
+--package com.myapp.test
+--name pytest
+--version 1.0 
+--bootstrap sdl2
+--window
+--presplash ./pic/startup.png
+--icon ./pic/logo.png
